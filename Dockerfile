@@ -21,11 +21,11 @@ COPY supervisor_conf/scheduler.conf /etc/supervisor/conf.d/
 
 COPY scheduler/* /usr/share/scheduler/
 
-COPY job.conf /data/
-RUN ln -s /data/job.conf /etc/supervisor/conf.d/job.conf
-COPY jobschedule.py /data/
+#COPY job/job.conf /job/
+RUN ln -s /job/job.conf /etc/supervisor/conf.d/job.conf
+#COPY job/jobschedule.py /job/
 
-VOLUME /data
+VOLUME /job
 
 CMD ["supervisord", "-c", "/etc/supervisor/supervisord.conf"]
 

@@ -3,7 +3,7 @@ import sys
 
 jobscheduleimported = False
 try:
-    sys.path.insert(0, '/data')
+    sys.path.insert(0, '/job')
     import jobschedule
     jobscheduleimported = True
 except ImportError:
