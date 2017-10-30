@@ -18,9 +18,14 @@ EXPOSE 9001
 COPY supervisor_conf/supervisord-nodaemon.conf /etc/supervisor/conf.d/
 COPY supervisor_conf/supervisord-http-server.conf /etc/supervisor/conf.d/
 COPY supervisor_conf/scheduler.conf /etc/supervisor/conf.d/
-COPY job.conf /etc/supervisor/conf.d/
+
 COPY scheduler/* /usr/share/scheduler/
-COPY jobschedule.py /usr/share/scheduler/
+
+COPY job.conf /data/
+RUN ln -s /data/job.conf /etc/supervisor/conf.d/job.conf
+COPY jobschedule.py /data/
+
+VOLUME /data
 
 CMD ["supervisord", "-c", "/etc/supervisor/supervisord.conf"]
 

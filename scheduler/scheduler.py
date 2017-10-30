@@ -1,6 +1,13 @@
 #!/usr/bin/python
 import sys
-import jobschedule
+
+jobscheduleimported = False
+try:
+    sys.path.insert(0, '/data')
+    import jobschedule
+    jobscheduleimported = True
+except ImportError:
+    pass
 
 def write_stdout(s):
     sys.stdout.write(s)
@@ -11,6 +18,9 @@ def write_stderr(s):
     sys.stderr.flush()
 
 def main(args):
+
+    if not jobscheduleimported:
+        write_stderr("Job Schedule Not Imported")
 
     while True:
         write_stdout('READY\n') # transition from ACKNOWLEDGED to READY
@@ -24,7 +34,8 @@ def main(args):
         write_stderr(data)
 
         # Run tasks
-        jobschedule.schedule.run_pending()
+        if jobscheduleimported:
+            jobschedule.run_pending()
 
         write_stdout('RESULT 2\nOK') # transition from READY to ACKNOWLEDGED
 
