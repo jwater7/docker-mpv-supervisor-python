@@ -7,7 +7,6 @@ RUN pip3 install schedule
 
 EXPOSE 9001
 
-COPY supervisor_conf/conf-files.ini /etc/supervisor.d/
 COPY supervisor_conf/supervisord-nodaemon.conf /etc/supervisor.d/supervisord-nodaemon.ini
 COPY supervisor_conf/supervisord-http-server.conf /etc/supervisor.d/supervisord-http-server.ini
 COPY supervisor_conf/scheduler.conf /etc/supervisor.d/scheduler.ini
