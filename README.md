@@ -37,3 +37,9 @@ To debug any problems with the job scheduler, you can tail the supervisor debug 
 docker exec -it mympvname supervisorctl tail -f scheduler stderr
 ~~~~
 
+## Building - note: not necessary in normal conditions
+To build the Raspberry Pi Alpine version:
+~~~~
+docker build -t jwater7/mpv-supervisor-python:arm32v6-alpine -f Dockerfile.arm32v6-alpine .
+~~~~
+
