@@ -10,7 +10,12 @@ The supervisor web administration port is exposed on port 9001.  You may choose 
 An example job is provided in the github project /job directory.
 To customize the job, use the [/job directory in github](https://github.com/jwater7/docker-mpv-supervisor-python/tree/master/job) as an example and mount the volume when running the container, for example:
 ~~~~
-docker run -it --rm --privileged -v /dev/dsp:/dev/dsp -p 9001:9001 -v /etc/localtime:/etc/localtime:ro -v $(pwd)/job:/job jwater7/mpv-supervisor-python
+docker run -it --name mpv-supervisor-python --rm --privileged -v /dev/dsp:/dev/dsp -p 9001:9001 -v /etc/localtime:/etc/localtime:ro -v $(pwd)/job:/job jwater7/mpv-supervisor-python
+~~~~
+
+Or a Raspberry Pi (arm32v6) example:
+~~~~
+docker run -it --name mpv-supervisor-python --rm --privileged --device /dev/snd -p 9001:9001 -v /etc/localtime:/etc/localtime:ro -v $(pwd)/job:/job jwater7/mpv-supervisor-python:arm32v6-alpine
 ~~~~
 
 ## job/job.conf

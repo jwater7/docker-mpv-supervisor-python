@@ -5,13 +5,13 @@ ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
-        python3 python-setuptools python-pip curl \
+        python3 python3-setuptools python3-pip curl \
         supervisor \
     && apt-get autoclean \
     && apt-get autoremove \
     && rm -rf /var/lib/apt/lists/*
 
-RUN pip install schedule
+RUN pip3 install schedule
 
 EXPOSE 9001
 
